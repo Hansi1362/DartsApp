@@ -13,3 +13,8 @@ pip install winshell gtts pygame tkinter
 After that, you can run the installation file that will create a shortcut on your desktop for the file "PressHereToStartTheApp".
 
 Have fun!
+
+## workwith.py
+
+If you need to edit the font size you can hop into the file workwith.py. 
+Here you can find any font size that ist used
