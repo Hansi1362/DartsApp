@@ -1,18 +1,6 @@
 import os
 import winshell
-import subprocess
-import sys
-# List of required libraries
-required_libraries = ["winshell", 'gtts', 're', 'pygame', 'tkinter']
 
-# Check and install missing libraries
-for library in required_libraries:
-    try:
-        __import__(library)
-    except ImportError:
-        subprocess.check_call([sys.executable, "-m", "pip", "install", library])
-        
-# Define the target file and shortcut details
 target_file = os.path.abspath("PressHereToStartTheApp")
 desktop = winshell.desktop()
 shortcut_path = os.path.join(desktop, "DartsApp2.0.lnk")
