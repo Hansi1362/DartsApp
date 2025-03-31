@@ -1,5 +1,6 @@
 import os
 import winshell
+import time
 
 target_file = os.path.abspath("PressHereToStartTheApp.pyw")
 desktop = winshell.desktop()
@@ -11,3 +12,4 @@ with winshell.shortcut(shortcut_path) as shortcut:
     shortcut.working_directory = os.path.dirname(target_file)
 
 print(f"Shortcut created on desktop: {shortcut_path}")
+time.sleep(2)
