@@ -1,7 +1,7 @@
 import os
 import winshell
 
-target_file = os.path.abspath("PressHereToStartTheApp")
+target_file = os.path.abspath("PressHereToStartTheApp.pyw")
 desktop = winshell.desktop()
 shortcut_path = os.path.join(desktop, "DartsApp2.0.lnk")
 
