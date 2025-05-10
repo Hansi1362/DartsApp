@@ -18,12 +18,26 @@ def start(name1, name2, rounds, mode):
     two_player_root.protocol("WM_DELETE_WINDOW", workwith.on_closing)
 
     if mode == 'rand':
-        mode = random.randint(0, 170)
-        rounds = 1
-
-    def reset_game(x):        
-        points_left_p1.set(mode)
-        points_left_p2.set(mode)
+        number = random.randint(1, 170)
+    elif mode == 501:
+        number = 501
+    elif mode == 301:
+        number = 301
+    elif mode == 170:
+        number = 170
+    
+    def reset_game(x): 
+        if mode not in [501, 301]:
+            number = random.randint(1, 170)
+        elif mode == 501:
+            number = 501
+        elif mode == 301:
+            number = 301
+        elif mode == 170:
+            number = 170
+               
+        points_left_p1.set(number)
+        points_left_p2.set(number)
             
         avg_points_p1.set(0)
         checkoutway_p1.set("")
@@ -49,7 +63,7 @@ def start(name1, name2, rounds, mode):
         endmatch.end(w)
 
     # Spieler 1 Variablen
-    points_left_p1 = t.IntVar(value=mode)
+    points_left_p1 = t.IntVar(value=number)
     avg_points_p1 = t.IntVar()
     checkoutway_p1 = t.StringVar()
     count_throws_p1 = t.IntVar()
@@ -109,7 +123,7 @@ def start(name1, name2, rounds, mode):
     checkout_p1 = t.Label(two_player_root, textvariable=checkoutway_p1, font=workwith.font2_two)
     
     # Spieler 2 Variablen
-    points_left_p2 = t.IntVar(value=mode)
+    points_left_p2 = t.IntVar(value=number)
     avg_points_p2 = t.IntVar()
     checkoutway_p2 = t.StringVar()
     count_throws_p2 = t.IntVar()
