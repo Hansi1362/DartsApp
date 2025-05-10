@@ -15,6 +15,8 @@ def start():
             mode = 301
         elif mode == '170':
             mode = 170
+        elif mode == 'Random':
+            mode = 'rand'
         one_player.start(player, mode)
         
     def two():
@@ -31,6 +33,8 @@ def start():
             mode = 301
         elif mode == '170':
             mode = 170
+        elif mode == 'Random':
+            mode = 'rand'
         two_player.start(player1, player2, rounds, mode)
         
     p1variable = t.StringVar()
@@ -57,7 +61,7 @@ def start():
     mode_variable = t.StringVar(select)
     mode_variable.set('501')
 
-    mode_dropdown = t.OptionMenu(select, mode_variable, '501', '301', '170')
+    mode_dropdown = t.OptionMenu(select, mode_variable, '501', '301', '170', 'Random')
     mode_dropdown.config(font=workwith.font2, bg=workwith.background)
     mode_dropdown.grid(row=0, column=2, padx=10, pady=10)
 

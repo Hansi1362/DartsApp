@@ -2,6 +2,7 @@ import tkinter as t, tts
 from tkinter import messagebox
 import workwith
 import endmatch
+import random
 
 
 def start(name1, name2, rounds, mode):
@@ -16,13 +17,18 @@ def start(name1, name2, rounds, mode):
 
     two_player_root.protocol("WM_DELETE_WINDOW", workwith.on_closing)
 
-    def reset_game(x):
+    if mode == 'rand':
+        mode = random.randint(0, 170)
+        rounds = 1
+
+    def reset_game(x):        
         points_left_p1.set(mode)
+        points_left_p2.set(mode)
+            
         avg_points_p1.set(0)
         checkoutway_p1.set("")
         count_throws_p1.set(0)
         
-        points_left_p2.set(mode)
         avg_points_p2.set(0)
         checkoutway_p2.set("")
         count_throws_p2.set(0)
