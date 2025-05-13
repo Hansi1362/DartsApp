@@ -17,6 +17,12 @@ def start(name1, name2, rounds, mode, bot_lvl):
 
     two_player_root.protocol("WM_DELETE_WINDOW", workwith.on_closing)
 
+    start = random.randint(1,2)
+    if start == 1:
+        set_shot()
+    else:
+        pass
+    
     if mode == 'rand':
         number = random.randint(1, 170)
     elif mode == 501:
