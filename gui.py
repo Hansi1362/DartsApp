@@ -39,7 +39,7 @@ def start():
         
     def bot():
         player1 = f"{p1.get()}: "
-        player2 = f"Bot: "
+        player2 = f"WurfWolfgang:"
         if rounds_entry.get() != "":
             rounds = int(rounds_entry.get())
         else:
@@ -81,9 +81,9 @@ def start():
     p2.grid(row=1, column=0, padx=10, pady=10, sticky='ne')
 
     select_one.grid(row=2, column=0, padx=10, pady=10, sticky='nw')
-    select_two.grid(row=2, column=1, padx=10, pady=10, sticky='ne')
-    select_bot.grid(row=2, column=2, padx=10, pady=10, sticky='ne')
-    select_lvl.grid(row=2, column=3, padx=10, pady=10, sticky='nw')
+    select_two.grid(row=2, column=0, padx=10, pady=10, sticky='ne')
+    select_bot.grid(row=2, column=1, padx=10, pady=10, sticky='ne')
+    select_lvl.grid(row=2, column=2, padx=10, pady=10, sticky='sw')
 
     mode = t.Label(select, text='Mode:', font=workwith.font2, bg=workwith.background)
     mode.grid(row=0, column=1, padx=10, pady=10, sticky='ne')
