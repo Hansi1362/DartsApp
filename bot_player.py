@@ -263,24 +263,6 @@ def start(name1, name2, rounds, mode, bot_lvl):
             if bot_lvl == 'h':
                 match points_left_p2.get():
                     case points if points < 21:
-                        if random.random() < 0.5:
-                            t1_text.set(points)
-                            t2_text.set(0)
-                            t3_text.set(0)
-                        else:
-                            t1_text.set(random.randint(1, 20))
-                            t2_text.set(random.randint(1, 20))
-                            t3_text.set(random.randint(1, 20))
-                    case points if 21 <= points <= 40:
-                        if random.random() < 0.4:
-                            t1_text.set(points)
-                            t2_text.set(0)
-                            t3_text.set(0)
-                        else:
-                            t1_text.set(random.randint(1, 20))
-                            t2_text.set(random.randint(1, 20))
-                            t3_text.set(random.randint(1, 20))
-                    case points if 41 <= points <= 60:
                         if random.random() < 0.3:
                             t1_text.set(points)
                             t2_text.set(0)
@@ -289,8 +271,8 @@ def start(name1, name2, rounds, mode, bot_lvl):
                             t1_text.set(random.randint(1, 20))
                             t2_text.set(random.randint(1, 20))
                             t3_text.set(random.randint(1, 20))
-                    case points if 61 <= points <= 80:
-                        if random.random() < 0.2:
+                    case points if 21 <= points <= 40:
+                        if random.random() < 0.25:
                             t1_text.set(points)
                             t2_text.set(0)
                             t3_text.set(0)
@@ -298,7 +280,16 @@ def start(name1, name2, rounds, mode, bot_lvl):
                             t1_text.set(random.randint(1, 20))
                             t2_text.set(random.randint(1, 20))
                             t3_text.set(random.randint(1, 20))
-                    case points if 81 <= points <= 100:
+                    case points if 41 <= points <= 60:
+                        if random.random() < 0.15:
+                            t1_text.set(points)
+                            t2_text.set(0)
+                            t3_text.set(0)
+                        else:
+                            t1_text.set(random.randint(1, 20))
+                            t2_text.set(random.randint(1, 20))
+                            t3_text.set(random.randint(1, 20))
+                    case points if 61 <= points <= 80:
                         if random.random() < 0.1:
                             t1_text.set(points)
                             t2_text.set(0)
@@ -307,7 +298,7 @@ def start(name1, name2, rounds, mode, bot_lvl):
                             t1_text.set(random.randint(1, 20))
                             t2_text.set(random.randint(1, 20))
                             t3_text.set(random.randint(1, 20))
-                    case points if 101 <= points <= 120:
+                    case points if 81 <= points <= 100:
                         if random.random() < 0.05:
                             t1_text.set(points)
                             t2_text.set(0)
@@ -316,8 +307,17 @@ def start(name1, name2, rounds, mode, bot_lvl):
                             t1_text.set(random.randint(1, 20))
                             t2_text.set(random.randint(1, 20))
                             t3_text.set(random.randint(1, 20))
+                    case points if 101 <= points <= 120:
+                        if random.random() < 0.03:
+                            t1_text.set(points)
+                            t2_text.set(0)
+                            t3_text.set(0)
+                        else:
+                            t1_text.set(random.randint(1, 20))
+                            t2_text.set(random.randint(1, 20))
+                            t3_text.set(random.randint(1, 20))
                     case points if points > 120:
-                        t1_text.set(random.randint(max(0, p - 30), min(180, p + 30)))
+                        t1_text.set(random.randint(max(0), min(120)))
             elif bot_lvl == 'p':
                 match points_left_p2.get():
                     case points if points < 21:
@@ -375,7 +375,7 @@ def start(name1, name2, rounds, mode, bot_lvl):
                             t2_text.set(random.randint(1, 20))
                             t3_text.set(random.randint(1, 20))
                     case points if points > 120:
-                        t1_text.set(random.randint(max(0, p - 30), min(180, p + 30)))
+                        t1_text.set(random.randint(max(0), min(120)))
         else:
             t1_text.set(random.randint(max(0, p - 30), min(180, p + 30)))
         ok2()
