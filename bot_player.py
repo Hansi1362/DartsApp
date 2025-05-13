@@ -16,12 +16,6 @@ def start(name1, name2, rounds, mode, bot_lvl):
     end.place(relx=1.0, rely=0.0, anchor='ne')
 
     two_player_root.protocol("WM_DELETE_WINDOW", workwith.on_closing)
-
-    start = random.randint(1,2)
-    if start == 1:
-        set_shot()
-    else:
-        pass
     
     if mode == 'rand':
         number = random.randint(1, 170)
@@ -91,7 +85,7 @@ def start(name1, name2, rounds, mode, bot_lvl):
         count_throws_p1.set(t - 3)
 
     back_p1 = t.Button(two_player_root, text='Return', command=last_points_p1, font=workwith.font3_two)
-
+    
     def ok1():
         global points_player
         throw, is_winning, points_player = workwith.calc(t1_p1.get(), t2_p1.get(), t3_p1.get(), points_left_p1.get(), 1)
@@ -263,125 +257,128 @@ def start(name1, name2, rounds, mode, bot_lvl):
     def set_shot():
         if isinstance(points_player, str):
             p = 0
+        elif points_player == 0:
+            p = 60
         else:
             p = points_player
+
         if points_left_p2.get() < 170:
             if bot_lvl == 'h':
-                match points_left_p2.get():
-                    case points if points < 21:
-                        if random.random() < 0.3:
-                            t1_text.set(points)
-                            t2_text.set(0)
-                            t3_text.set(0)
-                        else:
-                            t1_text.set(random.randint(1, 20))
-                            t2_text.set(random.randint(1, 20))
-                            t3_text.set(random.randint(1, 20))
-                    case points if 21 <= points <= 40:
-                        if random.random() < 0.25:
-                            t1_text.set(points)
-                            t2_text.set(0)
-                            t3_text.set(0)
-                        else:
-                            t1_text.set(random.randint(1, 20))
-                            t2_text.set(random.randint(1, 20))
-                            t3_text.set(random.randint(1, 20))
-                    case points if 41 <= points <= 60:
-                        if random.random() < 0.15:
-                            t1_text.set(points)
-                            t2_text.set(0)
-                            t3_text.set(0)
-                        else:
-                            t1_text.set(random.randint(1, 20))
-                            t2_text.set(random.randint(1, 20))
-                            t3_text.set(random.randint(1, 20))
-                    case points if 61 <= points <= 80:
-                        if random.random() < 0.1:
-                            t1_text.set(points)
-                            t2_text.set(0)
-                            t3_text.set(0)
-                        else:
-                            t1_text.set(random.randint(1, 20))
-                            t2_text.set(random.randint(1, 20))
-                            t3_text.set(random.randint(1, 20))
-                    case points if 81 <= points <= 100:
-                        if random.random() < 0.05:
-                            t1_text.set(points)
-                            t2_text.set(0)
-                            t3_text.set(0)
-                        else:
-                            t1_text.set(random.randint(1, 20))
-                            t2_text.set(random.randint(1, 20))
-                            t3_text.set(random.randint(1, 20))
-                    case points if 101 <= points <= 120:
-                        if random.random() < 0.03:
-                            t1_text.set(points)
-                            t2_text.set(0)
-                            t3_text.set(0)
-                        else:
-                            t1_text.set(random.randint(1, 20))
-                            t2_text.set(random.randint(1, 20))
-                            t3_text.set(random.randint(1, 20))
-                    case points if points > 120:
-                        t1_text.set(random.randint(max(0), min(120)))
+                points = points_left_p2.get()
+                if points < 21:
+                    if random.random() < 0.3:
+                        t1_text.set(points)
+                        t2_text.set(0)
+                        t3_text.set(0)
+                    else:
+                        t1_text.set(random.randint(1, 20))
+                        t2_text.set(random.randint(1, 20))
+                        t3_text.set(random.randint(1, 20))
+                elif 21 <= points <= 40:
+                    if random.random() < 0.25:
+                        t1_text.set(points)
+                        t2_text.set(0)
+                        t3_text.set(0)
+                    else:
+                        t1_text.set(random.randint(1, 20))
+                        t2_text.set(random.randint(1, 20))
+                        t3_text.set(random.randint(1, 20))
+                elif 41 <= points <= 60:
+                    if random.random() < 0.15:
+                        t1_text.set(points)
+                        t2_text.set(0)
+                        t3_text.set(0)
+                    else:
+                        t1_text.set(random.randint(1, 20))
+                        t2_text.set(random.randint(1, 20))
+                        t3_text.set(random.randint(1, 20))
+                elif 61 <= points <= 80:
+                    if random.random() < 0.1:
+                        t1_text.set(points)
+                        t2_text.set(0)
+                        t3_text.set(0)
+                    else:
+                        t1_text.set(random.randint(1, 20))
+                        t2_text.set(random.randint(1, 20))
+                        t3_text.set(random.randint(1, 20))
+                elif 81 <= points <= 100:
+                    if random.random() < 0.05:
+                        t1_text.set(points)
+                        t2_text.set(0)
+                        t3_text.set(0)
+                    else:
+                        t1_text.set(random.randint(1, 20))
+                        t2_text.set(random.randint(1, 20))
+                        t3_text.set(random.randint(1, 20))
+                elif 101 <= points <= 120:
+                    if random.random() < 0.03:
+                        t1_text.set(points)
+                        t2_text.set(0)
+                        t3_text.set(0)
+                    else:
+                        t1_text.set(random.randint(1, 20))
+                        t2_text.set(random.randint(1, 20))
+                        t3_text.set(random.randint(1, 20))
+                else:
+                    t1_text.set(random.randint(max(0), min(120)))
             elif bot_lvl == 'p':
-                match points_left_p2.get():
-                    case points if points < 21:
-                        if random.random() < 0.6:
-                            t1_text.set(points)
-                            t2_text.set(0)
-                            t3_text.set(0)
-                        else:
-                            t1_text.set(random.randint(1, 20))
-                            t2_text.set(random.randint(1, 20))
-                            t3_text.set(random.randint(1, 20))
-                    case points if 21 <= points <= 40:
-                        if random.random() < 0.5:
-                            t1_text.set(points)
-                            t2_text.set(0)
-                            t3_text.set(0)
-                        else:
-                            t1_text.set(random.randint(1, 20))
-                            t2_text.set(random.randint(1, 20))
-                            t3_text.set(random.randint(1, 20))
-                    case points if 41 <= points <= 60:
-                        if random.random() < 0.4:
-                            t1_text.set(points)
-                            t2_text.set(0)
-                            t3_text.set(0)
-                        else:
-                            t1_text.set(random.randint(1, 20))
-                            t2_text.set(random.randint(1, 20))
-                            t3_text.set(random.randint(1, 20))
-                    case points if 61 <= points <= 80:
-                        if random.random() < 0.3:
-                            t1_text.set(points)
-                            t2_text.set(0)
-                            t3_text.set(0)
-                        else:
-                            t1_text.set(random.randint(1, 20))
-                            t2_text.set(random.randint(1, 20))
-                            t3_text.set(random.randint(1, 20))
-                    case points if 81 <= points <= 100:
-                        if random.random() < 0.2:
-                            t1_text.set(points)
-                            t2_text.set(0)
-                            t3_text.set(0)
-                        else:
-                            t1_text.set(random.randint(1, 20))
-                            t2_text.set(random.randint(1, 20))
-                            t3_text.set(random.randint(1, 20))
-                    case points if 101 <= points <= 120:
-                        if random.random() < 0.1:
-                            t1_text.set(points)
-                            t2_text.set(0)
-                            t3_text.set(0)
-                        else:
-                            t1_text.set(random.randint(1, 20))
-                            t2_text.set(random.randint(1, 20))
-                            t3_text.set(random.randint(1, 20))
-                    case points if points > 120:
-                        t1_text.set(random.randint(max(0), min(120)))
+                points = points_left_p2.get()
+                if points < 21:
+                    if random.random() < 0.6:
+                        t1_text.set(points)
+                        t2_text.set(0)
+                        t3_text.set(0)
+                    else:
+                        t1_text.set(random.randint(1, 20))
+                        t2_text.set(random.randint(1, 20))
+                        t3_text.set(random.randint(1, 20))
+                elif 21 <= points <= 40:
+                    if random.random() < 0.5:
+                        t1_text.set(points)
+                        t2_text.set(0)
+                        t3_text.set(0)
+                    else:
+                        t1_text.set(random.randint(1, 20))
+                        t2_text.set(random.randint(1, 20))
+                        t3_text.set(random.randint(1, 20))
+                elif 41 <= points <= 60:
+                    if random.random() < 0.4:
+                        t1_text.set(points)
+                        t2_text.set(0)
+                        t3_text.set(0)
+                    else:
+                        t1_text.set(random.randint(1, 20))
+                        t2_text.set(random.randint(1, 20))
+                        t3_text.set(random.randint(1, 20))
+                elif 61 <= points <= 80:
+                    if random.random() < 0.3:
+                        t1_text.set(points)
+                        t2_text.set(0)
+                        t3_text.set(0)
+                    else:
+                        t1_text.set(random.randint(1, 20))
+                        t2_text.set(random.randint(1, 20))
+                        t3_text.set(random.randint(1, 20))
+                elif 81 <= points <= 100:
+                    if random.random() < 0.2:
+                        t1_text.set(points)
+                        t2_text.set(0)
+                        t3_text.set(0)
+                    else:
+                        t1_text.set(random.randint(1, 20))
+                        t2_text.set(random.randint(1, 20))
+                        t3_text.set(random.randint(1, 20))
+                elif 101 <= points <= 120:
+                    if random.random() < 0.1:
+                        t1_text.set(points)
+                        t2_text.set(0)
+                        t3_text.set(0)
+                    else:
+                        t1_text.set(random.randint(1, 20))
+                        t2_text.set(random.randint(1, 20))
+                        t3_text.set(random.randint(1, 20))
+                else:
+                    t1_text.set(random.randint(max(0), min(120)))
         else:
             t1_text.set(random.randint(max(0, p - 30), min(180, p + 30)))
         ok2()
