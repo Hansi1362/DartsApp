@@ -255,7 +255,10 @@ def start(name1, name2, rounds, mode, bot_lvl):
         entry.bind("<Return>", handle_enter)
 
     def set_shot():
-        p = points_player
+        if isinstance(points_player, str):
+            p = 0
+        else:
+            p = points_player
         if points_left_p2.get() < 170:
             if bot_lvl == 'h':
                 match points_left_p2.get():
