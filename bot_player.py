@@ -5,7 +5,7 @@ import endmatch
 import random
 
 
-def start(name1, name2, rounds, mode, bot_lvl):
+def start(name1, name2, rounds, mode, bot_lvl, first):
     global two_player_root
     two_player_root = t.Toplevel()
     two_player_root.title("Two player")
@@ -16,7 +16,8 @@ def start(name1, name2, rounds, mode, bot_lvl):
     end.place(relx=1.0, rely=0.0, anchor='ne')
 
     two_player_root.protocol("WM_DELETE_WINDOW", workwith.on_closing)
-    
+
+
     if mode == 'rand':
         number = random.randint(1, 170)
     elif mode == 501:
@@ -25,7 +26,7 @@ def start(name1, name2, rounds, mode, bot_lvl):
         number = 301
     elif mode == 170:
         number = 170
-    
+
     def reset_game(x): 
         if mode not in [501, 301]:
             number = random.randint(1, 170)
@@ -87,7 +88,6 @@ def start(name1, name2, rounds, mode, bot_lvl):
     back_p1 = t.Button(two_player_root, text='Return', command=last_points_p1, font=workwith.font3_two)
     
     def ok1():
-        global points_player
         throw, is_winning, points_player = workwith.calc(t1_p1.get(), t2_p1.get(), t3_p1.get(), points_left_p1.get(), 1)
         average, throws_p1 = workwith.get_average(1)
         t1_p1.delete(0, t.END)
@@ -105,12 +105,15 @@ def start(name1, name2, rounds, mode, bot_lvl):
                     tts.text_to_speech(f'Game Shot and the leg for {name1}. First dart in the next leg goes to {name2} Game on!', 'en')
                     handle_enter_game_win(2)
                     reset_game(None)
+                    set_shot(60)
                 else:
                     tts.text_to_speech(f'Game Shot and the leg for {name1}. First dart in the next leg goes to {name1} Game on!', 'en')   
                     handle_enter_game_win(1)
-                    reset_game(None)         
+                    reset_game(None)
+                            
         else:
             tts.text_to_speech(points_player, 'en')
+            set_shot(points_player)
         if int(throw) in workwith.dart_checkouts:
             checkoutway_p1.set(", ".join(workwith.dart_checkouts[throw][0].split(", ")))
         else:
@@ -219,7 +222,7 @@ def start(name1, name2, rounds, mode, bot_lvl):
             player_p1.config(fg='green')
             player_p2.config(fg='black')
         elif next_player == 2:
-            next_e = entries[-3]
+            next_e = entries[0]
             next_e.focus()
             player_p1.config(fg='black')
             player_p2.config(fg='green')
@@ -235,7 +238,6 @@ def start(name1, name2, rounds, mode, bot_lvl):
             next_entry = entries[0]
             next_entry.focus()
             ok1()
-            set_shot()
         else:
             next_entry = entries[next_index]  
             next_entry.focus() 
@@ -254,13 +256,16 @@ def start(name1, name2, rounds, mode, bot_lvl):
     for entry in entries:
         entry.bind("<Return>", handle_enter)
 
-    def set_shot():
-        if isinstance(points_player, str):
+    def set_shot(event):
+        if event == 'start':
+            event = random.randint(1, 100)
+            workwith.game_start.append(t1_p2)
+        if isinstance(event, str):
             p = 0
-        elif points_player == 0:
+        elif event == 0:
             p = 60
         else:
-            p = points_player
+            p = event
 
         if points_left_p2.get() < 170:
             if bot_lvl == 'h':
@@ -307,18 +312,18 @@ def start(name1, name2, rounds, mode, bot_lvl):
                         t2_text.set(0)
                         t3_text.set(0)
                     else:
-                        t1_text.set(random.randint(1, 20))
-                        t2_text.set(random.randint(1, 20))
-                        t3_text.set(random.randint(1, 20))
+                        t1_text.set(random.randint(1, 60))
+                        t2_text.set(random.randint(1, 60))
+                        t3_text.set(random.randint(1, 60))
                 elif 101 <= points <= 120:
                     if random.random() < 0.03:
                         t1_text.set(points)
                         t2_text.set(0)
                         t3_text.set(0)
                     else:
-                        t1_text.set(random.randint(1, 20))
-                        t2_text.set(random.randint(1, 20))
-                        t3_text.set(random.randint(1, 20))
+                        t1_text.set(random.randint(1, 60))
+                        t2_text.set(random.randint(1, 60))
+                        t3_text.set(random.randint(1, 60))
                 else:
                     t1_text.set(random.randint(max(0), min(120)))
             elif bot_lvl == 'p':
@@ -365,22 +370,32 @@ def start(name1, name2, rounds, mode, bot_lvl):
                         t2_text.set(0)
                         t3_text.set(0)
                     else:
-                        t1_text.set(random.randint(1, 20))
-                        t2_text.set(random.randint(1, 20))
-                        t3_text.set(random.randint(1, 20))
+                        t1_text.set(random.randint(1, 60))
+                        t2_text.set(random.randint(1, 60))
+                        t3_text.set(random.randint(1, 60))
                 elif 101 <= points <= 120:
                     if random.random() < 0.1:
                         t1_text.set(points)
                         t2_text.set(0)
                         t3_text.set(0)
                     else:
-                        t1_text.set(random.randint(1, 20))
-                        t2_text.set(random.randint(1, 20))
-                        t3_text.set(random.randint(1, 20))
+                        t1_text.set(random.randint(1, 60))
+                        t2_text.set(random.randint(1, 60))
+                        t3_text.set(random.randint(1, 60))
                 else:
                     t1_text.set(random.randint(max(0), min(120)))
         else:
             t1_text.set(random.randint(max(0, p - 30), min(180, p + 30)))
         ok2()
+
+    if first == 1:
+        pass
+    elif first == 2:
+        set_shot('start')
+    elif first == 0:
+        if random.randint(1, 2) == 1:
+            set_shot('start')
+        else:
+            pass
 
     two_player_root.mainloop()
